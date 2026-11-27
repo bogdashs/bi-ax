@@ -20,6 +20,8 @@ export const RESERVED_USERNAMES = new Set([
   // infra words
   "dev", "staging", "test", "demo", "root", "system", "null", "undefined",
   "anonymous", "bi", "axven",
+  // seeded demo pages
+  "mila", "kai", "nova", "rio", "juno",
 ]);
 
 /**

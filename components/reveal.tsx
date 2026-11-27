@@ -30,11 +30,18 @@ export function Reveal({
           observer.disconnect();
         }
       },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      { threshold: 0.05, rootMargin: "0px 0px -4% 0px" },
     );
 
     observer.observe(el);
-    return () => observer.disconnect();
+
+    // Safety net: never leave content invisible if the observer misses it.
+    const fallback = window.setTimeout(() => setShown(true), 1600);
+
+    return () => {
+      observer.disconnect();
+      window.clearTimeout(fallback);
+    };
   }, []);
 
   return (

@@ -34,7 +34,7 @@ export function ProfileStage({ profile }: { profile: BiaProfile }) {
               .map((demo) => (
                 <Link
                   key={demo.slug}
-                  href={`/${demo.slug}`}
+                  href={`/demo/${demo.slug}`}
                   className="glass rounded-full px-3 py-1.5 font-mono text-[11px] text-ink/70 transition-colors duration-200 hover:text-ink"
                 >
                   @{demo.slug}

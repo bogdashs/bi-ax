@@ -86,10 +86,10 @@ export const ICON_OPTIONS: IconName[] = [
 ];
 
 export const DEFAULT_PROFILE: BiaProfile = {
-  handle: "mila",
-  name: "MILA",
-  role: "photographer",
-  bio: "shooting film, moody light and strangers",
+  handle: "you",
+  name: "YOUR NAME",
+  role: "creator",
+  bio: "one link for everything you do",
   hueA: 195,
   hueB: 255,
   background: VIDEO_PRESET,

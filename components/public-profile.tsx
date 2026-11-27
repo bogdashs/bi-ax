@@ -28,13 +28,14 @@ export function PublicProfile({ handle }: { handle: string }) {
     );
   }
 
-  if (saved && saved.handle === handle) {
-    return <ProfileStage profile={saved} />;
-  }
-
+  // Demo names are owned by the platform and always show the seeded page.
   const demo = getDemo(handle);
   if (demo) {
     return <ProfileStage profile={toBiaProfile(demo)} />;
+  }
+
+  if (saved && saved.handle === handle) {
+    return <ProfileStage profile={saved} />;
   }
 
   return <FreeHandle handle={handle} />;
