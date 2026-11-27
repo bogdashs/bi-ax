@@ -38,9 +38,16 @@ export default async function RegisterPage({
         </p>
       </div>
 
+      <a
+        href="/api/demo-login"
+        className="shine grad-brand mt-8 flex w-full items-center justify-center rounded-full px-5 py-3.5 text-[14px] font-semibold text-white transition-transform duration-200 hover:-translate-y-0.5"
+      >
+        enter demo account
+      </a>
+
       <Link
         href="/"
-        className="mt-8 w-fit rounded-full bg-white/10 px-5 py-2.5 text-[13px] font-semibold text-white/85 transition-colors hover:bg-white/15"
+        className="mt-4 block text-center text-[12.5px] text-white/35 transition-colors hover:text-white/70"
       >
         back home
       </Link>

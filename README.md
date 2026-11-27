@@ -37,8 +37,22 @@ lib/            demo profiles, username rules
 | Route | What |
 | --- | --- |
 | `/` | landing with live name check |
-| `/demo/<name>` | example profile pages (`mila`, `kai`, `nova`, `rio`, `juno`) |
-| `/register`, `/login` | stubs, accounts come next |
+| `/<name>` | public profile page (`mila`, `kai`, `nova`, `rio`, `juno` are seeded) |
+| `/demo/<name>` | same as above, kept for links |
+| `/login` | demo sign-in, no password |
+| `/dashboard` | page editor with live preview |
+
+## Demo flow
+
+`/login` → `enter demo account` → `/dashboard`. Edits are stored in
+`localStorage` under `biax:profile:v1`, so the page at `/<handle>` shows your
+version. No database yet; `isUsernameTaken` is still a stub.
+
+## Media
+
+`public/media/bg-mila.mp4` (16s seamless gradient loop) and
+`public/media/demo-track.mp3` (24s ambient loop) were generated locally with
+ffmpeg, so the demo has real video and audio without external assets.
 
 ## Username rules
 

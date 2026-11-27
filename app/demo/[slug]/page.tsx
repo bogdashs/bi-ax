@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { BioPage } from "@/components/bio-page";
+import { ProfileStage } from "@/components/profile-stage";
 import { DEMOS, getDemo } from "@/lib/demos";
+import { toBiaProfile } from "@/lib/profile";
 
 type Params = Promise<{ slug: string }>;
 
@@ -16,13 +17,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const demo = getDemo(slug);
-  if (!demo) return { title: "Страница не найдена" };
+  if (!demo) return { title: "not found" };
 
-  return {
-    title: `${demo.name} — ${demo.role}`,
-    description: demo.bio,
-    alternates: { canonical: `/demo/${demo.slug}` },
-  };
+  return { title: `${demo.name} — ${demo.role}`, description: demo.bio };
 }
 
 export default async function DemoPage({ params }: { params: Params }) {
@@ -30,5 +27,5 @@ export default async function DemoPage({ params }: { params: Params }) {
   const demo = getDemo(slug);
   if (!demo) notFound();
 
-  return <BioPage demo={demo} />;
+  return <ProfileStage profile={toBiaProfile(demo)} />;
 }

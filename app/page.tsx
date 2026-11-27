@@ -2,13 +2,15 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Avatar } from "@/components/avatar";
 import { CountUp } from "@/components/count-up";
+import { CursorGlow } from "@/components/cursor-glow";
 import { DemoCard } from "@/components/demo-card";
 import { LinkIcon } from "@/components/link-icon";
-import { ProfileMiniCard, ProfilePreview } from "@/components/profile-preview";
+import { ProfileCard } from "@/components/profile-card";
 import { Reveal } from "@/components/reveal";
 import { SiteHeader } from "@/components/site-header";
 import { UsernameField } from "@/components/username-field";
 import { DEMOS } from "@/lib/demos";
+import { toBiaProfile } from "@/lib/profile";
 
 const [mila, kai, nova] = DEMOS;
 
@@ -58,6 +60,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
+      <CursorGlow />
 
       <main>
         {/* HERO */}
@@ -96,19 +99,19 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="relative flex min-h-[560px] items-center justify-center">
+          <div className="relative flex min-h-[460px] items-center justify-center">
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 grid place-items-center"
             >
-              <div className="size-[min(560px,92%)] rounded-full border border-white/8" />
+              <div className="size-[min(600px,96%)] rounded-full border border-white/8" />
             </div>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 grid place-items-center"
             >
               <div
-                className="size-[min(410px,68%)] rounded-full border border-dashed border-white/10"
+                className="size-[min(470px,74%)] rounded-full border border-dashed border-white/10"
                 style={{ animation: "spin-slow 70s linear infinite" }}
               />
             </div>
@@ -117,26 +120,14 @@ export default function HomePage() {
               className="pointer-events-none absolute size-[340px] rounded-full bg-accent/25 blur-[110px]"
             />
 
-            <div style={{ animation: "float-y 7.5s ease-in-out infinite" }}>
-              <ProfilePreview demo={mila} />
+            <div
+              className="w-full max-w-[420px]"
+              style={{ animation: "float-y 7.5s ease-in-out infinite" }}
+            >
+              <ProfileCard profile={toBiaProfile(mila)} />
             </div>
 
-            <div
-              className="absolute left-0 top-16 hidden sm:block"
-              style={{ animation: "float-x 9s ease-in-out infinite" }}
-            >
-              <ProfileMiniCard demo={kai} />
-            </div>
 
-            <div
-              className="absolute bottom-20 right-0 hidden sm:block"
-              style={{
-                animation: "float-x 11s ease-in-out infinite",
-                animationDelay: "-3s",
-              }}
-            >
-              <ProfileMiniCard demo={nova} />
-            </div>
           </div>
         </section>
 
