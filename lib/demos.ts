@@ -33,6 +33,7 @@ export type DemoProfile = {
   /** oklch hues for the animated backdrop */
   hueA: number;
   hueB: number;
+  views: number;
   links: DemoLink[];
 };
 
@@ -44,6 +45,7 @@ export const DEMOS: DemoProfile[] = [
     bio: "shooting film, moody light and strangers",
     hueA: 195,
     hueB: 255,
+    views: 12400,
     links: [
       { label: "tiktok", href: "https://tiktok.com", icon: "tiktok" },
       { label: "youtube", href: "https://youtube.com", icon: "youtube" },
@@ -58,6 +60,7 @@ export const DEMOS: DemoProfile[] = [
     bio: "making beats at 3am, sleeping at 5",
     hueA: 120,
     hueB: 170,
+    views: 8300,
     links: [
       { label: "spotify", href: "https://spotify.com", icon: "spotify" },
       { label: "soundcloud", href: "https://soundcloud.com", icon: "soundcloud" },
@@ -72,6 +75,7 @@ export const DEMOS: DemoProfile[] = [
     bio: "variety streams, bad aim, good vibes",
     hueA: 25,
     hueB: 60,
+    views: 21700,
     links: [
       { label: "twitch", href: "https://twitch.tv", icon: "twitch" },
       { label: "youtube", href: "https://youtube.com", icon: "youtube" },
@@ -86,6 +90,7 @@ export const DEMOS: DemoProfile[] = [
     bio: "shipping interfaces and sometimes writing about it",
     hueA: 205,
     hueB: 265,
+    views: 4100,
     links: [
       { label: "github", href: "https://github.com", icon: "github" },
       { label: "x", href: "https://x.com", icon: "x" },
@@ -100,6 +105,7 @@ export const DEMOS: DemoProfile[] = [
     bio: "drawing soft things and weird little creatures",
     hueA: 85,
     hueB: 160,
+    views: 9600,
     links: [
       { label: "tiktok", href: "https://tiktok.com", icon: "tiktok" },
       { label: "youtube", href: "https://youtube.com", icon: "youtube" },

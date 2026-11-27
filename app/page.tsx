@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { Avatar } from "@/components/avatar";
+import { CountUp } from "@/components/count-up";
 import { DemoCard } from "@/components/demo-card";
 import { LinkIcon } from "@/components/link-icon";
 import { ProfileMiniCard, ProfilePreview } from "@/components/profile-preview";
@@ -29,6 +31,12 @@ const STEPS = [
   { n: "1", title: "pick a name", text: "type it, we check it live." },
   { n: "2", title: "drop your links", text: "socials, music, whatever you've got." },
   { n: "3", title: "post it", text: "one link in every bio you own." },
+];
+
+const STATS = [
+  { value: 1240, label: "pages made" },
+  { value: 8900, label: "links added" },
+  { value: 46000, label: "profile views" },
 ];
 
 const FAQ = [
@@ -68,6 +76,23 @@ export default function HomePage() {
 
             <div className="mt-8">
               <UsernameField />
+            </div>
+
+            <div className="mt-7 flex items-center gap-3">
+              <div className="flex -space-x-2.5">
+                {DEMOS.slice(0, 5).map((demo) => (
+                  <Avatar
+                    key={demo.slug}
+                    name={demo.name}
+                    hueA={demo.hueA}
+                    hueB={demo.hueB}
+                    size={30}
+                  />
+                ))}
+              </div>
+              <p className="text-[13px] text-white/50">
+                <CountUp to={1240} /> pages already made
+              </p>
             </div>
           </div>
 
@@ -115,6 +140,29 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* STATS */}
+        <Reveal>
+          <section className="mx-auto w-[min(1180px,calc(100%-2rem))] pt-6">
+            <div className="glass grid overflow-hidden rounded-[28px] sm:grid-cols-3">
+              {STATS.map((stat, index) => (
+                <div
+                  key={stat.label}
+                  className={`px-5 py-7 text-center md:px-8 md:py-9 ${
+                    index > 0
+                      ? "border-t border-white/10 sm:border-l sm:border-t-0"
+                      : ""
+                  }`}
+                >
+                  <p className="font-display text-[clamp(1.9rem,4vw,2.9rem)] font-semibold leading-none tracking-[-0.02em]">
+                    <CountUp to={stat.value} />
+                  </p>
+                  <p className="mt-2 text-[13px] text-white/50">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+        </Reveal>
+
         {/* PROFILES */}
         <Reveal>
           <section
@@ -131,8 +179,10 @@ export default function HomePage() {
             </div>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {[mila, kai, nova].map((demo) => (
-                <DemoCard key={demo.slug} demo={demo} />
+              {[mila, kai, nova].map((demo, index) => (
+                <Reveal key={demo.slug} delay={index * 90}>
+                  <DemoCard demo={demo} />
+                </Reveal>
               ))}
             </div>
           </section>
@@ -150,6 +200,7 @@ export default function HomePage() {
 
             <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
               {FEATURES.map((feature, index) => (
+                <Reveal key={feature.title} delay={index * 90}>
                 <article
                   key={feature.title}
                   className="glass-soft group relative overflow-hidden rounded-[28px] p-6 transition-[transform,border-color] duration-500 hover:-translate-y-1.5 hover:border-white/20 md:p-7"
@@ -168,6 +219,7 @@ export default function HomePage() {
                     className="pointer-events-none absolute -right-16 -top-16 size-40 rounded-full bg-accent/10 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
                   />
                 </article>
+                </Reveal>
               ))}
             </div>
           </section>

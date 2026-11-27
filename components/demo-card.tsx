@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { Avatar } from "@/components/avatar";
 import { LinkIcon } from "@/components/link-icon";
 import { ProfileAura } from "@/components/profile-aura";
 import type { DemoProfile } from "@/lib/demos";
@@ -23,7 +24,13 @@ export function DemoCard({ demo }: { demo: DemoProfile }) {
         </div>
 
         <div className="mt-auto">
-          <p className="text-[12px] text-white/60">{demo.role}</p>
+          <Avatar
+            name={demo.name}
+            hueA={demo.hueA}
+            hueB={demo.hueB}
+            size={38}
+          />
+          <p className="mt-3 text-[12px] text-white/60">{demo.role}</p>
           <p className="font-display text-[clamp(1.6rem,3vw,2.2rem)] font-semibold leading-[0.95] tracking-[-0.02em]">
             {demo.name}
           </p>

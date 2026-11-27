@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Avatar } from "@/components/avatar";
 import { LinkIcon } from "@/components/link-icon";
 import { ProfileAura } from "@/components/profile-aura";
 import type { DemoProfile } from "@/lib/demos";
@@ -17,6 +18,13 @@ export function ProfilePreview({ demo }: { demo: DemoProfile }) {
         </div>
 
         <div className="mt-auto">
+          <Avatar
+            name={demo.name}
+            hueA={demo.hueA}
+            hueB={demo.hueB}
+            size={52}
+            className="mb-4"
+          />
           <p className="text-[13px] text-white/60">{demo.role}</p>
           <h3 className="font-display text-[clamp(2rem,3.4vw,2.6rem)] font-semibold leading-[0.9] tracking-[-0.02em]">
             {demo.name}
