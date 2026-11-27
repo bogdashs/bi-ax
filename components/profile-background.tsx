@@ -1,13 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { ProfileAura } from "@/components/profile-aura";
 import { useMediaSrc } from "@/components/use-media-src";
 import type { BiaProfile } from "@/lib/profile";
 
 export function ProfileBackground({ profile }: { profile: BiaProfile }) {
   const src = useMediaSrc(profile.background);
+  const [failed, setFailed] = useState(false);
 
-  if (!src) {
+  useEffect(() => {
+    setFailed(false);
+  }, [src]);
+
+  if (!src || failed) {
     return <ProfileAura hueA={profile.hueA} hueB={profile.hueB} />;
   }
 
@@ -21,6 +27,7 @@ export function ProfileBackground({ profile }: { profile: BiaProfile }) {
           muted
           loop
           playsInline
+          onError={() => setFailed(true)}
         />
       ) : (
         // eslint-disable-next-line @next/next/no-img-element
@@ -28,6 +35,7 @@ export function ProfileBackground({ profile }: { profile: BiaProfile }) {
           className="absolute inset-0 h-full w-full object-cover"
           src={src}
           alt=""
+          onError={() => setFailed(true)}
         />
       )}
 

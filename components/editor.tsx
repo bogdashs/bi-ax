@@ -137,7 +137,10 @@ export function Editor() {
   const [profile, setProfile] = useState<BiaProfile>(DEFAULT_PROFILE);
   const [tab, setTab] = useState<Tab>("basics");
   const [saved, setSaved] = useState(false);
+  const [dirty, setDirty] = useState(false);
   const [mediaError, setMediaError] = useState("");
+  const [avatarError, setAvatarError] = useState("");
+  const [uploading, setUploading] = useState(false);
   const backgroundInput = useRef<HTMLInputElement>(null);
   const avatarInput = useRef<HTMLInputElement>(null);
   const previewRef = useRef<HTMLDivElement>(null);
@@ -151,9 +154,24 @@ export function Editor() {
     }
   }, []);
 
+  // Autosave: whatever you change in the editor lands on the public page
+  // without needing the save button.
+  useEffect(() => {
+    if (!dirty) return;
+
+    const timer = window.setTimeout(() => {
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(profile));
+      setDirty(false);
+      setSaved(true);
+    }, 700);
+
+    return () => window.clearTimeout(timer);
+  }, [dirty, profile]);
+
   function patch<K extends keyof BiaProfile>(key: K, value: BiaProfile[K]) {
     setProfile((current) => ({ ...current, [key]: value }));
     setSaved(false);
+    setDirty(true);
   }
 
   function patchLink(id: string, changes: Partial<ProfileLink>) {
@@ -164,6 +182,7 @@ export function Editor() {
       ),
     }));
     setSaved(false);
+    setDirty(true);
   }
 
   function addLink() {
@@ -180,6 +199,7 @@ export function Editor() {
       ],
     }));
     setSaved(false);
+    setDirty(true);
   }
 
   function removeLink(id: string) {
@@ -188,6 +208,7 @@ export function Editor() {
       links: current.links.filter((link) => link.id !== id),
     }));
     setSaved(false);
+    setDirty(true);
   }
 
   async function uploadBackground(file: File) {
@@ -204,31 +225,45 @@ export function Editor() {
       return;
     }
 
-    const previous = profile.background;
-    const ref = await putMedia(file);
-    patch("background", ref);
-    patch("mediaType", guessMediaType(file));
-    if (isUploaded(previous)) void deleteMedia(previous);
+    try {
+      setUploading(true);
+      const previous = profile.background;
+      const ref = await putMedia(file);
+      patch("background", ref);
+      patch("mediaType", guessMediaType(file));
+      if (isUploaded(previous)) void deleteMedia(previous);
+    } catch {
+      setMediaError("couldn't save the file — try a smaller one");
+    } finally {
+      setUploading(false);
+    }
   }
 
   async function uploadAvatar(file: File) {
-    setMediaError("");
+    setAvatarError("");
 
     if (!file.type.startsWith("image/")) {
-      setMediaError("image only for the avatar");
+      setAvatarError("pick an image file — png, jpg, webp or gif");
       return;
     }
 
-    const sizeError = checkFileSize(file, 5);
+    const sizeError = checkFileSize(file, MAX_UPLOAD_MB);
     if (sizeError) {
-      setMediaError(sizeError);
+      setAvatarError(sizeError);
       return;
     }
 
-    const previous = profile.avatar;
-    const ref = await putMedia(file);
-    patch("avatar", ref);
-    if (isUploaded(previous)) void deleteMedia(previous);
+    try {
+      setUploading(true);
+      const previous = profile.avatar;
+      const ref = await putMedia(file);
+      patch("avatar", ref);
+      if (isUploaded(previous)) void deleteMedia(previous);
+    } catch {
+      setAvatarError("couldn't save the file — try a smaller one");
+    } finally {
+      setUploading(false);
+    }
   }
 
   function clearBackground() {
@@ -318,7 +353,9 @@ export function Editor() {
                       src={profile.avatar}
                     />
                     <div className="min-w-0 flex-1">
-                      <p className="text-[12.5px] text-muted">avatar</p>
+                      <p className="text-[12.5px] text-muted">
+                        avatar {uploading ? "· uploading…" : "· up to 15 mb"}
+                      </p>
                       <div className="mt-1.5 flex flex-wrap gap-2">
                         <button
                           type="button"
@@ -770,7 +807,10 @@ export function Editor() {
             >
               reset
             </button>
-            {saved && (
+            {dirty && (
+              <span className="text-[12px] text-muted">saving…</span>
+            )}
+            {saved && !dirty && (
               <span className="inline-flex items-center gap-1.5 text-[12px] text-ok">
                 <Check className="size-4" strokeWidth={2.4} />
                 live

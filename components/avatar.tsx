@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { useMediaSrc } from "@/components/use-media-src";
 
 export function Avatar({
@@ -18,13 +19,19 @@ export function Avatar({
   className?: string;
 }) {
   const url = useMediaSrc(src);
+  const [failed, setFailed] = useState(false);
 
-  if (url) {
+  useEffect(() => {
+    setFailed(false);
+  }, [url]);
+
+  if (url && !failed) {
     return (
       // eslint-disable-next-line @next/next/no-img-element
       <img
         src={url}
         alt=""
+        onError={() => setFailed(true)}
         className={`shrink-0 rounded-full object-cover ring-1 ring-inset ring-white/25 ${className}`}
         style={{ width: size, height: size }}
       />
