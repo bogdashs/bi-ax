@@ -59,7 +59,17 @@ export function CursorFx({ mode = "glow" }: { mode?: CursorMode }) {
     let targetX = 0;
     let targetY = 0;
     let started = false;
+    let scale = 1;
+    let targetScale = 1;
     const positions = layers.map(() => ({ x: 0, y: 0 }));
+
+    const isInteractive = (target: EventTarget | null) =>
+      target instanceof Element &&
+      Boolean(
+        target.closest(
+          "a, button, [role='button'], input, textarea, select, summary, label",
+        ),
+      );
 
     const onMove = (event: PointerEvent) => {
       targetX = event.clientX;
@@ -75,24 +85,45 @@ export function CursorFx({ mode = "glow" }: { mode?: CursorMode }) {
       }
     };
 
+    const onOver = (event: PointerEvent) => {
+      targetScale = isInteractive(event.target) ? 0.55 : 1;
+    };
+
+    const onDown = () => {
+      targetScale = 0.32;
+    };
+
+    const onUp = (event: PointerEvent) => {
+      targetScale = isInteractive(event.target) ? 0.55 : 1;
+    };
+
     const tick = () => {
+      scale += (targetScale - scale) * 0.18;
+
       positions.forEach((position, index) => {
         const lerp = layers[index].lerp;
         position.x += (targetX - position.x) * lerp;
         position.y += (targetY - position.y) * lerp;
         const node = nodes[index];
         if (node) {
-          node.style.transform = `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%)`;
+          node.style.transform = `translate3d(${position.x}px, ${position.y}px, 0) translate(-50%, -50%) scale(${scale.toFixed(3)})`;
         }
       });
+
       raf = requestAnimationFrame(tick);
     };
 
     window.addEventListener("pointermove", onMove, { passive: true });
+    window.addEventListener("pointerover", onOver, { passive: true });
+    window.addEventListener("pointerdown", onDown, { passive: true });
+    window.addEventListener("pointerup", onUp, { passive: true });
     raf = requestAnimationFrame(tick);
 
     return () => {
       window.removeEventListener("pointermove", onMove);
+      window.removeEventListener("pointerover", onOver);
+      window.removeEventListener("pointerdown", onDown);
+      window.removeEventListener("pointerup", onUp);
       cancelAnimationFrame(raf);
     };
   }, [mode]);
