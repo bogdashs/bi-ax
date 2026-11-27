@@ -30,6 +30,15 @@ export function ProfileBackground({ profile }: { profile: BiaProfile }) {
           alt=""
         />
       )}
+
+      {/* palette still tints uploaded media, so color switches always do something */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background: `linear-gradient(150deg, oklch(0.62 0.18 ${profile.hueA} / 0.4) 0%, transparent 55%, oklch(0.55 0.16 ${profile.hueB} / 0.35) 100%)`,
+        }}
+      />
+
       <div
         className="absolute inset-0"
         style={{

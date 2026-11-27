@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 import { Avatar } from "@/components/avatar";
+import { CursorFx } from "@/components/cursor-fx";
 import { ProfileBackground } from "@/components/profile-background";
 import { ProfileCard } from "@/components/profile-card";
 import type { IconName } from "@/lib/demos";
@@ -139,6 +140,7 @@ export function Editor() {
   const [mediaError, setMediaError] = useState("");
   const backgroundInput = useRef<HTMLInputElement>(null);
   const avatarInput = useRef<HTMLInputElement>(null);
+  const previewRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     try {
@@ -402,7 +404,7 @@ export function Editor() {
               {tab === "colors" && (
                 <div>
                   <p className="text-[13px] text-muted">
-                    background gradient and player button
+                    tint the gradient, the card glow and any uploaded background
                   </p>
                   <div className="mt-4 grid gap-2 sm:grid-cols-2">
                     {PALETTES.map((palette) => {
@@ -665,7 +667,9 @@ export function Editor() {
                   </div>
 
                   <div>
-                    <p className="text-[13px] text-muted">cursor effect</p>
+                    <p className="text-[13px] text-muted">
+                      cursor effect — hover the preview to feel it
+                    </p>
                     <div className="mt-3 grid gap-2 sm:grid-cols-2">
                       {CURSORS.map((cursor) => {
                         const Icon = CURSOR_ICONS[cursor.id];
@@ -783,8 +787,12 @@ export function Editor() {
         </div>
 
         <aside className="h-fit lg:sticky lg:top-6">
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] border border-line">
+          <div
+            ref={previewRef}
+            className="relative aspect-[4/5] w-full overflow-hidden rounded-[28px] border border-line"
+          >
             <ProfileBackground profile={profile} />
+            <CursorFx mode={profile.cursor} containerRef={previewRef} />
             <div className="relative flex h-full items-center justify-center p-4">
               <ProfileCard profile={profile} />
             </div>
