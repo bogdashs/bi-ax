@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { Avatar } from "@/components/avatar";
 import { CountUp } from "@/components/count-up";
-import { CursorGlow } from "@/components/cursor-glow";
+import { CursorFx } from "@/components/cursor-fx";
 import { DemoCard } from "@/components/demo-card";
 import { LinkIcon } from "@/components/link-icon";
 import { ProfileCard } from "@/components/profile-card";
@@ -60,7 +60,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <CursorGlow />
+      <CursorFx mode="glow" />
 
       <main>
         {/* HERO */}

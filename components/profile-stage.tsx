@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CopyLink } from "@/components/copy-link";
-import { CursorGlow } from "@/components/cursor-glow";
-import { ProfileAura } from "@/components/profile-aura";
+import { CursorFx } from "@/components/cursor-fx";
+import { ProfileBackground } from "@/components/profile-background";
 import { ProfileCard } from "@/components/profile-card";
 import { DEMOS } from "@/lib/demos";
 import type { BiaProfile } from "@/lib/profile";
@@ -9,29 +9,9 @@ import type { BiaProfile } from "@/lib/profile";
 export function ProfileStage({ profile }: { profile: BiaProfile }) {
   return (
     <main className="relative min-h-dvh overflow-hidden">
-      {profile.video ? (
-        <div className="absolute inset-0 overflow-hidden">
-          <video
-            className="absolute inset-0 h-full w-full object-cover"
-            src={profile.video}
-            autoPlay
-            muted
-            loop
-            playsInline
-          />
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                "linear-gradient(180deg, rgba(8,14,26,0.3) 0%, rgba(8,14,26,0.45) 55%, rgba(8,14,26,0.92) 100%)",
-            }}
-          />
-        </div>
-      ) : (
-        <ProfileAura hueA={profile.hueA} hueB={profile.hueB} />
-      )}
+      <ProfileBackground profile={profile} />
 
-      <CursorGlow />
+      <CursorFx mode={profile.cursor} />
 
       <div className="relative mx-auto flex min-h-dvh w-full max-w-[1100px] flex-col px-5 py-5 sm:px-8 sm:py-7">
         <header className="flex items-center justify-between">

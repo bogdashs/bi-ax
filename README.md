@@ -48,6 +48,19 @@ lib/            demo profiles, username rules
 `localStorage` under `biax:profile:v1`, so the page at `/<handle>` shows your
 version. No database yet; `isUsernameTaken` is still a stub.
 
+## Editor
+
+Tabs: `basics`, `colors`, `background`, `player`, `links`, `card`.
+
+- **background** — gradient, demo loop, or your own video / gif / image up to 15 MB.
+- **card** — 4 presets (classic, compact, showcase, projects), 4 cursor effects,
+  3D tilt with an on/off switch and a 0–14° strength slider.
+- **avatar** — upload an image (up to 5 MB) or keep the monogram.
+
+Uploads are stored in IndexedDB (`biax-media`) and referenced as `idb:<key>`,
+so they survive a reload but never leave the device. A real backend replaces
+this with object storage later.
+
 ## Media
 
 `public/media/bg-night.mp4` (16s seamless deep-blue loop) and
