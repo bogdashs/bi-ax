@@ -22,7 +22,7 @@ export type BiaProfile = {
 };
 
 export const STORAGE_KEY = "biax:profile:v1";
-export const VIDEO_PRESET = "/media/bg-mila.mp4";
+export const VIDEO_PRESET = "/media/bg-night.mp4";
 export const TRACK_PRESET = "/media/demo-track.mp3";
 
 export const PALETTES = [

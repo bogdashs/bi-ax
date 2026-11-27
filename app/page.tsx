@@ -72,7 +72,7 @@ export default function HomePage() {
               <span className="grad-text">all of you.</span>
             </h1>
 
-            <p className="mt-6 max-w-[34ch] text-[16px] leading-relaxed text-white/65">
+            <p className="mt-6 max-w-[34ch] text-[16px] leading-relaxed text-ink/75">
               music, videos and socials on a single page. pick a name and you&apos;re
               live.
             </p>
@@ -93,7 +93,7 @@ export default function HomePage() {
                   />
                 ))}
               </div>
-              <p className="text-[13px] text-white/50">
+              <p className="text-[13px] text-muted">
                 <CountUp to={1240} /> pages already made
               </p>
             </div>
@@ -104,14 +104,14 @@ export default function HomePage() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 grid place-items-center"
             >
-              <div className="size-[min(600px,96%)] rounded-full border border-white/8" />
+              <div className="size-[min(600px,96%)] rounded-full border border-line" />
             </div>
             <div
               aria-hidden="true"
               className="pointer-events-none absolute inset-0 grid place-items-center"
             >
               <div
-                className="size-[min(470px,74%)] rounded-full border border-dashed border-white/10"
+                className="size-[min(470px,74%)] rounded-full border border-dashed border-line"
                 style={{ animation: "spin-slow 70s linear infinite" }}
               />
             </div>
@@ -140,14 +140,14 @@ export default function HomePage() {
                   key={stat.label}
                   className={`px-5 py-7 text-center md:px-8 md:py-9 ${
                     index > 0
-                      ? "border-t border-white/10 sm:border-l sm:border-t-0"
+                      ? "border-t border-line sm:border-l sm:border-t-0"
                       : ""
                   }`}
                 >
                   <p className="font-display text-[clamp(1.9rem,4vw,2.9rem)] font-semibold leading-none tracking-[-0.02em]">
                     <CountUp to={stat.value} />
                   </p>
-                  <p className="mt-2 text-[13px] text-white/50">{stat.label}</p>
+                  <p className="mt-2 text-[13px] text-muted">{stat.label}</p>
                 </div>
               ))}
             </div>
@@ -164,7 +164,7 @@ export default function HomePage() {
               <h2 className="font-display text-[clamp(2rem,4.6vw,3.4rem)] font-semibold leading-[0.92] tracking-[-0.03em]">
                 see it live
               </h2>
-              <p className="max-w-[30ch] text-[14px] leading-relaxed text-white/65">
+              <p className="max-w-[30ch] text-[14px] leading-relaxed text-ink/75">
                 three people, three pages, one builder.
               </p>
             </div>
@@ -194,7 +194,7 @@ export default function HomePage() {
                 <Reveal key={feature.title} delay={index * 90}>
                 <article
                   key={feature.title}
-                  className="glass-soft group relative overflow-hidden rounded-[28px] p-6 transition-[transform,border-color] duration-500 hover:-translate-y-1.5 hover:border-white/20 md:p-7"
+                  className="glass-soft group relative overflow-hidden rounded-[28px] p-6 transition-[transform,border-color] duration-500 hover:-translate-y-1.5 hover:border-line-strong md:p-7"
                 >
                   <span className="grad-text font-display text-[15px] font-semibold">
                     0{index + 1}
@@ -202,7 +202,7 @@ export default function HomePage() {
                   <h3 className="mt-6 font-display text-[26px] font-semibold leading-tight tracking-[-0.02em]">
                     {feature.title}
                   </h3>
-                  <p className="mt-2 text-[14px] leading-relaxed text-white/65">
+                  <p className="mt-2 text-[14px] leading-relaxed text-ink/75">
                     {feature.text}
                   </p>
                   <div
@@ -225,7 +225,7 @@ export default function HomePage() {
                   key={step.n}
                   className={`p-7 md:p-9 ${
                     index > 0
-                      ? "border-t border-white/10 md:border-l md:border-t-0"
+                      ? "border-t border-line md:border-l md:border-t-0"
                       : ""
                   }`}
                 >
@@ -235,7 +235,7 @@ export default function HomePage() {
                   <h3 className="mt-4 font-display text-[22px] font-semibold tracking-[-0.02em]">
                     {step.title}
                   </h3>
-                  <p className="mt-1.5 text-[14px] text-white/55">{step.text}</p>
+                  <p className="mt-1.5 text-[14px] text-muted">{step.text}</p>
                 </div>
               ))}
             </div>
@@ -257,15 +257,15 @@ export default function HomePage() {
                 {FAQ.map((item) => (
                   <details
                     key={item.q}
-                    className="glass-soft group rounded-[20px] px-5 py-4 transition-colors duration-300 open:border-white/20"
+                    className="glass-soft group rounded-[20px] px-5 py-4 transition-colors duration-300 open:border-line-strong"
                   >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[15px] font-semibold text-white/85 [&::-webkit-details-marker]:hidden">
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-[15px] font-semibold text-ink [&::-webkit-details-marker]:hidden">
                       {item.q}
-                      <span className="grid size-7 shrink-0 place-items-center rounded-full bg-white/8 text-white/60 transition-transform duration-300 group-open:rotate-45">
+                      <span className="grid size-7 shrink-0 place-items-center rounded-full bg-ink/4 text-muted transition-transform duration-300 group-open:rotate-45">
                         +
                       </span>
                     </summary>
-                    <p className="mt-3 text-[14px] leading-relaxed text-white/65">
+                    <p className="mt-3 text-[14px] leading-relaxed text-ink/75">
                       {item.a}
                     </p>
                   </details>
@@ -278,7 +278,7 @@ export default function HomePage() {
         {/* CTA */}
         <Reveal delay={60}>
           <section className="mx-auto w-[min(1180px,calc(100%-2rem))] pt-20 md:pt-26">
-            <div className="relative overflow-hidden rounded-[36px] border border-white/10 bg-white/[0.04] px-6 py-14 md:px-14 md:py-20">
+            <div className="relative overflow-hidden rounded-[36px] border border-line bg-white/5 px-6 py-14 md:px-14 md:py-20">
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-24 -top-28 size-[420px] rounded-full bg-accent/25 blur-[120px]"
@@ -292,7 +292,7 @@ export default function HomePage() {
                 <h2 className="font-display text-[clamp(2.2rem,5vw,3.8rem)] font-semibold leading-[0.9] tracking-[-0.035em]">
                   grab your name
                 </h2>
-                <p className="mt-4 max-w-[30ch] text-[15px] leading-relaxed text-white/60">
+                <p className="mt-4 max-w-[30ch] text-[15px] leading-relaxed text-muted">
                   one page, one link, and it&apos;s all yours.
                 </p>
                 <div className="mt-8">
@@ -304,7 +304,7 @@ export default function HomePage() {
         </Reveal>
       </main>
 
-      <footer className="mx-auto mt-24 w-[min(1180px,calc(100%-2rem))] border-t border-white/10 py-8">
+      <footer className="mx-auto mt-24 w-[min(1180px,calc(100%-2rem))] border-t border-line py-8">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <Link
             href="/"
@@ -317,7 +317,7 @@ export default function HomePage() {
             {[mila.links[0], kai.links[0], nova.links[0]].map((link, index) => (
               <span
                 key={index}
-                className="grid size-9 place-items-center rounded-full border border-white/10 text-white/45"
+                className="grid size-9 place-items-center rounded-full border border-line text-faint"
               >
                 <LinkIcon name={link.icon} className="size-3.5" />
               </span>
@@ -326,7 +326,7 @@ export default function HomePage() {
 
           <Link
             href="https://axven.xyz"
-            className="inline-flex items-center gap-1 text-[13px] text-white/45 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1 text-[13px] text-faint transition-colors hover:text-white"
           >
             an axven project
             <ArrowUpRight className="size-3.5" strokeWidth={2} />

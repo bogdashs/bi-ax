@@ -108,10 +108,10 @@ export function Player({
 
       <div className="min-w-0 flex-1">
         <div className="flex items-baseline justify-between gap-3">
-          <p className="truncate text-[12.5px] text-white/75">
+          <p className="truncate text-[12.5px] text-ink/85">
             {title || "no track yet"}
           </p>
-          <span className="shrink-0 font-mono text-[10px] text-white/35">
+          <span className="shrink-0 font-mono text-[10px] text-faint">
             {clock(current)} / {clock(duration)}
           </span>
         </div>
@@ -125,7 +125,7 @@ export function Player({
             <span
               key={index}
               className={`flex-1 rounded-full transition-colors duration-200 ${
-                index / BARS.length <= progress ? "bg-white/85" : "bg-white/15"
+                index / BARS.length <= progress ? "bg-accent" : "bg-ink/15"
               }`}
               style={{ height: `${Math.round(height * 100)}%` }}
             />

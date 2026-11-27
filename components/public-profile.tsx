@@ -23,7 +23,7 @@ export function PublicProfile({ handle }: { handle: string }) {
   if (!ready) {
     return (
       <main className="grid min-h-dvh place-items-center">
-        <span className="size-8 animate-spin rounded-full border-2 border-white/15 border-t-white/70" />
+        <span className="size-8 animate-spin rounded-full border-2 border-line-strong border-t-white/70" />
       </main>
     );
   }

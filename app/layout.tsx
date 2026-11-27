@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Fredoka, JetBrains_Mono, Nunito } from "next/font/google";
+import { Backdrop } from "@/components/backdrop";
 import "./globals.css";
 
 const nunito = Nunito({
@@ -38,7 +39,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#070b14",
+  themeColor: "#0b1220",
   colorScheme: "dark",
 };
 
@@ -50,7 +51,10 @@ export default function RootLayout({
       lang="en"
       className={`${nunito.variable} ${fredoka.variable} ${jetbrains.variable}`}
     >
-      <body className="grain">{children}</body>
+      <body className="grain">
+        <Backdrop />
+        {children}
+      </body>
     </html>
   );
 }

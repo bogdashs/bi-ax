@@ -19,12 +19,11 @@ export function ProfileStage({ profile }: { profile: BiaProfile }) {
             loop
             playsInline
           />
-          <div className="absolute inset-0 bg-[#070b14]/25" />
           <div
             className="absolute inset-0"
             style={{
               background:
-                "linear-gradient(180deg, rgba(7,11,20,0.15) 0%, rgba(7,11,20,0.35) 55%, rgba(7,11,20,0.7) 100%)",
+                "linear-gradient(180deg, rgba(8,14,26,0.3) 0%, rgba(8,14,26,0.45) 55%, rgba(8,14,26,0.92) 100%)",
             }}
           />
         </div>
@@ -38,7 +37,7 @@ export function ProfileStage({ profile }: { profile: BiaProfile }) {
         <header className="flex items-center justify-between">
           <Link
             href="/"
-            className="font-display text-[18px] font-semibold tracking-[-0.02em] text-white/90"
+            className="font-display text-[18px] font-semibold tracking-[-0.02em] text-ink/90"
           >
             bi.ax
           </Link>
@@ -49,14 +48,14 @@ export function ProfileStage({ profile }: { profile: BiaProfile }) {
           <ProfileCard profile={profile} className="max-w-[600px]" />
 
           <div className="flex flex-wrap items-center justify-center gap-2">
-            <span className="text-[12px] text-white/30">more pages</span>
+            <span className="text-[12px] text-faint">more pages</span>
             {DEMOS.filter((demo) => demo.slug !== profile.handle)
               .slice(0, 4)
               .map((demo) => (
                 <Link
                   key={demo.slug}
                   href={`/${demo.slug}`}
-                  className="glass rounded-full px-3 py-1.5 font-mono text-[11px] text-white/55 transition-colors duration-200 hover:text-white"
+                  className="glass rounded-full px-3 py-1.5 font-mono text-[11px] text-ink/70 transition-colors duration-200 hover:text-ink"
                 >
                   @{demo.slug}
                 </Link>

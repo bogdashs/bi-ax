@@ -21,7 +21,7 @@ export function CopyLink({ handle }: { handle: string }) {
       type="button"
       onClick={copy}
       aria-label="Copy page link"
-      className="glass inline-flex items-center gap-2 rounded-full px-3.5 py-2 font-mono text-[11px] text-white/70 transition-colors duration-200 hover:bg-white/12 hover:text-white"
+      className="glass inline-flex items-center gap-2 rounded-full px-3.5 py-2 font-mono text-[11px] text-ink/80 transition-colors duration-200 hover:bg-ink/6 hover:text-white"
     >
       {copied ? "copied" : `bi.ax/${handle}`}
       {copied ? (

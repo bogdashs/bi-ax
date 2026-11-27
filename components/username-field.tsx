@@ -4,23 +4,23 @@ import { useEffect, useId, useRef, useState } from "react";
 import { checkUsername, inspectUsername, type UsernameStatus } from "@/lib/username";
 
 const BORDER: Record<UsernameStatus, string> = {
-  empty: "border-white/10",
+  empty: "border-line",
   short: "border-err/50",
   long: "border-err/50",
   invalid: "border-err/50",
   reserved: "border-err/50",
-  checking: "border-white/10",
+  checking: "border-line",
   taken: "border-err/50",
   available: "border-ok/60",
 };
 
 const TEXT: Record<UsernameStatus, string> = {
-  empty: "text-white/45",
+  empty: "text-faint",
   short: "text-err",
   long: "text-err",
   invalid: "text-err",
   reserved: "text-err",
-  checking: "text-white/45",
+  checking: "text-faint",
   taken: "text-err",
   available: "text-ok",
 };
@@ -71,9 +71,9 @@ export function UsernameField({ id }: { id?: string }) {
       </label>
 
       <div
-        className={`flex items-center gap-2 rounded-full border bg-white/6 p-1.5 pl-4 backdrop-blur-md transition-colors duration-200 ${BORDER[status]}`}
+        className={`flex items-center gap-2 rounded-full border bg-ink/3 p-1.5 pl-4 backdrop-blur-md transition-colors duration-200 ${BORDER[status]}`}
       >
-        <span className="select-none font-mono text-[13px] text-white/40">
+        <span className="select-none font-mono text-[13px] text-faint">
           bi.ax/
         </span>
         <input
@@ -87,12 +87,12 @@ export function UsernameField({ id }: { id?: string }) {
           spellCheck={false}
           maxLength={24}
           aria-describedby={`${inputId}-status`}
-          className="min-w-0 flex-1 bg-transparent py-1.5 text-[15px] text-white caret-cyan outline-none placeholder:text-white/35"
+          className="min-w-0 flex-1 bg-transparent py-1.5 text-[15px] text-white caret-cyan outline-none placeholder:text-faint"
         />
         <button
           type="submit"
           disabled={!available}
-          className="shine grad-brand rounded-full px-4 py-2.5 text-[13px] font-semibold text-white transition-[transform,opacity] duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-none disabled:bg-white/8 disabled:text-white/35 disabled:hover:translate-y-0"
+          className="shine grad-brand rounded-full px-4 py-2.5 text-[13px] font-semibold text-white transition-[transform,opacity] duration-200 hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:bg-none disabled:bg-ink/10 disabled:text-ink/45 disabled:hover:translate-y-0"
         >
           claim
         </button>

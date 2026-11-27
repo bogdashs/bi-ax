@@ -14,7 +14,7 @@ export function Avatar({
   return (
     <span
       aria-hidden="true"
-      className={`inline-grid shrink-0 place-items-center rounded-full font-display font-semibold text-[#06121c] ring-1 ring-inset ring-white/25 ${className}`}
+      className={`inline-grid shrink-0 place-items-center rounded-full font-display font-semibold text-[#06121c] ring-1 ring-inset ring-white/60 ${className}`}
       style={{
         width: size,
         height: size,

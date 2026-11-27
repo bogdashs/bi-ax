@@ -50,7 +50,7 @@ version. No database yet; `isUsernameTaken` is still a stub.
 
 ## Media
 
-`public/media/bg-mila.mp4` (16s seamless gradient loop) and
+`public/media/bg-night.mp4` (16s seamless deep-blue loop) and
 `public/media/demo-track.mp3` (24s ambient loop) were generated locally with
 ffmpeg, so the demo has real video and audio without external assets.
 

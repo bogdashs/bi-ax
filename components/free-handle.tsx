@@ -12,12 +12,12 @@ export function FreeHandle({ handle }: { handle: string }) {
         }}
       />
 
-      <div className="relative w-full max-w-[440px] rounded-[32px] border border-white/12 bg-[#080d16]/75 p-8 text-center backdrop-blur-2xl">
-        <p className="font-mono text-[11px] text-white/40">bi.ax/{handle}</p>
+      <div className="relative w-full max-w-[440px] rounded-[32px] border border-line bg-white/5 p-8 text-center backdrop-blur-2xl">
+        <p className="font-mono text-[11px] text-faint">bi.ax/{handle}</p>
         <h1 className="mt-4 font-display text-[38px] font-semibold leading-[0.95] tracking-[-0.03em]">
           still free
         </h1>
-        <p className="mt-3 text-[14px] leading-relaxed text-white/60">
+        <p className="mt-3 text-[14px] leading-relaxed text-muted">
           nobody has taken this name yet.
         </p>
 
@@ -30,7 +30,7 @@ export function FreeHandle({ handle }: { handle: string }) {
 
         <Link
           href="/"
-          className="mt-3 inline-block text-[12.5px] text-white/40 transition-colors hover:text-white/80"
+          className="mt-3 inline-block text-[12.5px] text-faint transition-colors hover:text-ink"
         >
           back home
         </Link>

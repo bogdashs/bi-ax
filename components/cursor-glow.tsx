@@ -8,24 +8,32 @@ export function CursorGlow() {
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    if (!window.matchMedia("(pointer: fine)").matches) return;
+    if (window.matchMedia("(pointer: coarse)").matches) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     let raf = 0;
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
-    let targetX = x;
-    let targetY = y;
+    let x = 0;
+    let y = 0;
+    let targetX = 0;
+    let targetY = 0;
+    let started = false;
 
     const onMove = (event: PointerEvent) => {
       targetX = event.clientX;
       targetY = event.clientY;
+
+      if (!started) {
+        started = true;
+        x = targetX;
+        y = targetY;
+        el.style.opacity = "1";
+      }
     };
 
     const tick = () => {
-      x += (targetX - x) * 0.09;
-      y += (targetY - y) * 0.09;
-      el.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+      x += (targetX - x) * 0.12;
+      y += (targetY - y) * 0.12;
+      el.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
       raf = requestAnimationFrame(tick);
     };
 
@@ -41,13 +49,12 @@ export function CursorGlow() {
   return (
     <div
       ref={ref}
+      data-cursor-glow=""
       aria-hidden="true"
-      className="pointer-events-none fixed left-0 top-0 z-0 hidden size-[520px] -translate-x-1/2 -translate-y-1/2 md:block"
+      className="pointer-events-none fixed left-0 top-0 z-0 hidden size-[520px] opacity-0 transition-opacity duration-700 md:block"
       style={{
-        marginLeft: "-260px",
-        marginTop: "-260px",
         background:
-          "radial-gradient(circle, oklch(0.78 0.16 250 / 0.16), transparent 62%)",
+          "radial-gradient(circle, oklch(0.72 0.12 255 / 0.28), transparent 62%)",
       }}
     />
   );

@@ -22,7 +22,7 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="rounded-full px-3 py-1.5 text-[13px] text-white/60 transition-colors duration-200 hover:bg-white/8 hover:text-white"
+              className="rounded-full px-3 py-1.5 text-[13px] text-muted transition-colors duration-200 hover:bg-ink/4 hover:text-white"
             >
               {item.label}
             </Link>
@@ -32,7 +32,7 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center gap-1">
           <Link
             href="/login"
-            className="rounded-full px-3.5 py-2 text-[13px] text-white/60 transition-colors duration-200 hover:text-white"
+            className="rounded-full px-3.5 py-2 text-[13px] text-muted transition-colors duration-200 hover:text-white"
           >
             log in
           </Link>

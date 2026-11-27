@@ -14,10 +14,10 @@ export default function LoginPage() {
         }}
       />
 
-      <div className="relative w-full max-w-[400px] rounded-[32px] border border-white/12 bg-[#080d16]/75 p-7 backdrop-blur-2xl">
+      <div className="relative w-full max-w-[400px] rounded-[32px] border border-line bg-white/5 p-7 backdrop-blur-2xl">
         <Link
           href="/"
-          className="font-display text-[18px] font-semibold tracking-[-0.02em] text-white/90"
+          className="font-display text-[18px] font-semibold tracking-[-0.02em] text-ink"
         >
           bi.ax
         </Link>
@@ -25,7 +25,7 @@ export default function LoginPage() {
         <h1 className="mt-8 font-display text-[36px] font-semibold leading-[0.92] tracking-[-0.03em]">
           log in
         </h1>
-        <p className="mt-3 text-[14px] leading-relaxed text-white/55">
+        <p className="mt-3 text-[14px] leading-relaxed text-muted">
           real accounts are next. for now there is a demo one, already filled in.
         </p>
 
@@ -38,7 +38,7 @@ export default function LoginPage() {
 
         <Link
           href="/"
-          className="mt-4 block text-center text-[12.5px] text-white/35 transition-colors hover:text-white/70"
+          className="mt-4 block text-center text-[12.5px] text-faint transition-colors hover:text-ink/80"
         >
           back home
         </Link>

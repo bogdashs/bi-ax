@@ -13,7 +13,7 @@ export default async function RegisterPage({
     <main className="mx-auto flex min-h-dvh w-full max-w-[520px] flex-col justify-center px-6 py-16">
       <Link
         href="/"
-        className="font-display text-[18px] font-semibold tracking-[-0.02em] text-white/90"
+        className="font-display text-[18px] font-semibold tracking-[-0.02em] text-ink"
       >
         bi.ax
       </Link>
@@ -23,17 +23,17 @@ export default async function RegisterPage({
       </h1>
 
       {u ? (
-        <p className="mt-4 text-[15px] text-white/60">
+        <p className="mt-4 text-[15px] text-muted">
           <span className="font-mono text-white">bi.ax/{u}</span> is held for you.
         </p>
       ) : (
-        <p className="mt-4 text-[15px] text-white/60">
+        <p className="mt-4 text-[15px] text-muted">
           pick a name on the home page first.
         </p>
       )}
 
       <div className="glass mt-8 rounded-[24px] p-6">
-        <p className="text-[15px] text-white/75">
+        <p className="text-[15px] text-ink/85">
           accounts open next — email, password, then your page.
         </p>
       </div>
@@ -47,7 +47,7 @@ export default async function RegisterPage({
 
       <Link
         href="/"
-        className="mt-4 block text-center text-[12.5px] text-white/35 transition-colors hover:text-white/70"
+        className="mt-4 block text-center text-[12.5px] text-faint transition-colors hover:text-ink/80"
       >
         back home
       </Link>
